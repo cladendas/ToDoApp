@@ -15,6 +15,7 @@
 		6AE2EC4F245B477E002BDDBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AE2EC4D245B477E002BDDBB /* LaunchScreen.storyboard */; };
 		6AE2EC5A245B477E002BDDBB /* ToDoAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2EC59245B477E002BDDBB /* ToDoAppTests.swift */; };
 		6AE2EC65245B477E002BDDBB /* ToDoAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE2EC64245B477E002BDDBB /* ToDoAppUITests.swift */; };
+		6AE2EC7A245B486B002BDDBB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE2EC79245B486B002BDDBB /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		6AE2EC60245B477E002BDDBB /* ToDoAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AE2EC64245B477E002BDDBB /* ToDoAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAppUITests.swift; sourceTree = "<group>"; };
 		6AE2EC66245B477E002BDDBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6AE2EC79245B486B002BDDBB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		6AE2EC36245B477B002BDDBB = {
 			isa = PBXGroup;
 			children = (
+				6AE2EC79245B486B002BDDBB /* Default-568h@2x.png */,
 				6AE2EC41245B477B002BDDBB /* ToDoApp */,
 				6AE2EC58245B477E002BDDBB /* ToDoAppTests */,
 				6AE2EC63245B477E002BDDBB /* ToDoAppUITests */,
@@ -99,13 +102,10 @@
 		6AE2EC41245B477B002BDDBB /* ToDoApp */ = {
 			isa = PBXGroup;
 			children = (
-				6AE2EC42245B477B002BDDBB /* AppDelegate.swift */,
-				6AE2EC44245B477B002BDDBB /* SceneDelegate.swift */,
-				6AE2EC46245B477B002BDDBB /* ViewController.swift */,
-				6AE2EC48245B477B002BDDBB /* Main.storyboard */,
-				6AE2EC4B245B477E002BDDBB /* Assets.xcassets */,
-				6AE2EC4D245B477E002BDDBB /* LaunchScreen.storyboard */,
-				6AE2EC50245B477E002BDDBB /* Info.plist */,
+				6AE2EC77245B47D0002BDDBB /* Controller */,
+				6AE2EC76245B47C8002BDDBB /* View */,
+				6AE2EC75245B47BE002BDDBB /* Model */,
+				6AE2EC78245B481B002BDDBB /* Supporting files */,
 			);
 			path = ToDoApp;
 			sourceTree = "<group>";
@@ -126,6 +126,41 @@
 				6AE2EC66245B477E002BDDBB /* Info.plist */,
 			);
 			path = ToDoAppUITests;
+			sourceTree = "<group>";
+		};
+		6AE2EC75245B47BE002BDDBB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6AE2EC76245B47C8002BDDBB /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6AE2EC77245B47D0002BDDBB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6AE2EC46245B477B002BDDBB /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6AE2EC78245B481B002BDDBB /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				6AE2EC42245B477B002BDDBB /* AppDelegate.swift */,
+				6AE2EC44245B477B002BDDBB /* SceneDelegate.swift */,
+				6AE2EC48245B477B002BDDBB /* Main.storyboard */,
+				6AE2EC4B245B477E002BDDBB /* Assets.xcassets */,
+				6AE2EC4D245B477E002BDDBB /* LaunchScreen.storyboard */,
+				6AE2EC50245B477E002BDDBB /* Info.plist */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AE2EC4F245B477E002BDDBB /* LaunchScreen.storyboard in Resources */,
+				6AE2EC7A245B486B002BDDBB /* Default-568h@2x.png in Resources */,
 				6AE2EC4C245B477E002BDDBB /* Assets.xcassets in Resources */,
 				6AE2EC4A245B477B002BDDBB /* Main.storyboard in Resources */,
 			);
@@ -435,7 +471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ToDoApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ToDoApp/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,7 +488,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = ToDoApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ToDoApp/Supporting files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

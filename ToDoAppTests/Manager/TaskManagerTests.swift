@@ -99,5 +99,4 @@ class TaskManagerTests: XCTestCase {
         
         XCTAssertTrue(sut.tasksCount == 1)
     }
-    
 }

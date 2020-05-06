@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Section: Int {
+enum Section: Int, CaseIterable {
     case todo
     case done
 }
@@ -22,6 +22,8 @@ extension DataProvider: UITableViewDelegate {
 }
 
 extension DataProvider: UITableViewDataSource {
+    
+    //возвращает кол-во строк в указанной секции
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let section = Section(rawValue: section) else {
@@ -31,8 +33,8 @@ extension DataProvider: UITableViewDataSource {
         guard let taskManager = taskManager else {return 0}
         
         switch section {
-        case .todo: return taskManager.tasksCount
-        case .done: return taskManager.doneTasksCount
+            case .todo: return taskManager.tasksCount
+            case .done: return taskManager.doneTasksCount
         }
     }
     
@@ -40,15 +42,23 @@ extension DataProvider: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TaskCell.self), for: indexPath) as! TaskCell
         
+        guard let section = Section(rawValue: indexPath.section) else { fatalError() }
+        guard let taskManager = taskManager else { fatalError() }
         
-        if let task = taskManager?.task(at: indexPath.row) {
-            cell.configure(withTask: task)
+        let task: Task
+        
+        switch section {
+            case .todo: task = taskManager.task(at: indexPath.row)
+            
+            case .done: task = taskManager.doneTask(at: indexPath.row)
         }
         
+        cell.configure(withTask: task)
+
         return cell
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return Section.allCases.count
     }
 }

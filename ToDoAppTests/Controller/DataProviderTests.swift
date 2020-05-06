@@ -135,6 +135,36 @@ class DataProviderTests: XCTestCase {
         
         XCTAssertEqual(buttonTitle, "Undone")
     }
+    
+    //при checkTask() task переносится в из массива tasks в массив doneTasks
+    func testCheckingTaskChecksInTaskManager() {
+        let task = Task(title: "Foo")
+        sut.taskManager?.add(task: task)
+        
+        tableView.dataSource?.tableView?(
+            tableView,
+            commit: .delete,
+            forRowAt: IndexPath(row: 0, section: 0))
+        
+        XCTAssertEqual(sut.taskManager?.tasksCount, 0)
+        XCTAssertEqual(sut.taskManager?.doneTasksCount, 1)
+    }
+    
+    //при uncheckTask() task переносится из массива doneTasks в массив tasks
+    func testUncheckingTaskUncheckinhsInTaskManager() {
+        let task = Task(title: "Foo")
+        sut.taskManager?.add(task: task)
+        sut.taskManager?.checkTask(at: 0)
+        tableView.reloadData()
+        
+        tableView.dataSource?.tableView?(
+            tableView,
+            commit: .delete,
+            forRowAt: IndexPath(row: 0, section: 1))
+        
+        XCTAssertEqual(sut.taskManager?.tasksCount, 1)
+        XCTAssertEqual(sut.taskManager?.doneTasksCount, 0)
+    }
 }
 
 extension DataProviderTests {

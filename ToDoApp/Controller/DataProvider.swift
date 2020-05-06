@@ -52,14 +52,15 @@ extension DataProvider: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: TaskCell.self), for: indexPath) as! TaskCell
         
-        guard let section = Section(rawValue: indexPath.section) else { fatalError() }
-        guard let taskManager = taskManager else { fatalError() }
+        guard
+            let section = Section(rawValue: indexPath.section),
+            let taskManager = taskManager
+        else { fatalError() }
         
         let task: Task
         
         switch section {
             case .todo: task = taskManager.task(at: indexPath.row)
-            
             case .done: task = taskManager.doneTask(at: indexPath.row)
         }
         
@@ -70,5 +71,19 @@ extension DataProvider: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return Section.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        guard
+            let section = Section(rawValue: indexPath.section),
+            let taskManager = taskManager
+        else { fatalError() }
+        
+        switch section {
+            case .todo: taskManager.checkTask(at: indexPath.row)
+            case .done: taskManager.uncheckTask(at: indexPath.row)
+        }
+        tableView.reloadData()
     }
 }

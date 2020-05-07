@@ -26,16 +26,37 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beE-zg-ZI2">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beE-zg-ZI2">
                                                     <rect key="frame" x="15" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yv5-tR-cXU">
+                                                    <rect key="frame" x="98" y="11" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylm-lY-BZr">
+                                                    <rect key="frame" x="183" y="11" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Yv5-tR-cXU" firstAttribute="top" secondItem="Imq-zh-AFs" secondAttribute="topMargin" id="9qR-5v-ZDa"/>
+                                                <constraint firstItem="beE-zg-ZI2" firstAttribute="leading" secondItem="Imq-zh-AFs" secondAttribute="leadingMargin" id="Pt9-q3-4Pa"/>
+                                                <constraint firstItem="beE-zg-ZI2" firstAttribute="top" secondItem="Imq-zh-AFs" secondAttribute="topMargin" id="dB9-06-Cp1"/>
+                                                <constraint firstItem="ylm-lY-BZr" firstAttribute="top" secondItem="Imq-zh-AFs" secondAttribute="topMargin" id="dL1-3g-iMT"/>
+                                                <constraint firstItem="Yv5-tR-cXU" firstAttribute="leading" secondItem="beE-zg-ZI2" secondAttribute="trailing" constant="41" id="e3C-0O-hJW"/>
+                                                <constraint firstItem="ylm-lY-BZr" firstAttribute="leading" secondItem="Yv5-tR-cXU" secondAttribute="trailing" constant="43" id="mgH-6h-fAU"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="ylm-lY-BZr" id="jfM-jM-eeU"/>
+                                            <outlet property="locationLabel" destination="Yv5-tR-cXU" id="Vru-gS-5fr"/>
                                             <outlet property="titleLabel" destination="beE-zg-ZI2" id="4MI-vq-JuJ"/>
                                         </connections>
                                     </tableViewCell>

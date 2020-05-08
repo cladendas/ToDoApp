@@ -21,5 +21,7 @@ class TaskCell: UITableViewCell {
             let dateString = df.string(from: date)
             dateLabel.text = dateString
         }
+        
+        self.locationLabel.text = task.location?.name
     }
 }

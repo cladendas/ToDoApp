@@ -112,6 +112,13 @@
                                 <rect key="frame" x="40" y="323" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qbu-CT-fVA">
+                                <rect key="frame" x="139" y="196" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -127,6 +134,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="IPg-3y-DVs" id="LfL-4v-mbb"/>
                         <outlet property="descriptionLabel" destination="33d-et-J6Y" id="883-MD-XOL"/>
+                        <outlet property="locationLabel" destination="Qbu-CT-fVA" id="wOY-Ez-72u"/>
                         <outlet property="mapView" destination="sFg-QO-jAv" id="Xck-gu-ove"/>
                         <outlet property="titleLabel" destination="njj-Eg-dVq" id="JH6-tJ-yC3"/>
                     </connections>

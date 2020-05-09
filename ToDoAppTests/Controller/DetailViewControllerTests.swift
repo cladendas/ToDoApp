@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import ToDoApp
 
 class DetailViewControllerTests: XCTestCase {
@@ -42,9 +43,44 @@ class DetailViewControllerTests: XCTestCase {
         XCTAssertTrue(sut.dateLabel.isDescendant(of: sut.view))
     }
     
+    //на DetailViewController есть ярлык locationLabel и он присутствует на вью
+    func testHasLocationLabel() {
+        XCTAssertNotNil(sut.locationLabel)
+        XCTAssertTrue(sut.locationLabel.isDescendant(of: sut.view))
+    }
+    
     //на DetailViewController есть mapKit
     func testHasMapView() {
         XCTAssertNotNil(sut.mapView)
         XCTAssertTrue(sut.mapView.isDescendant(of: sut.view))
+    }
+    
+    func setupTaskAndAppearanceTransition() {
+        let coordinate = CLLocationCoordinate2D(latitude: 40.7143528, longitude: -74.0059731)
+        let location = Location(name: "Baz", coordinate: coordinate)
+        let date = Date(timeIntervalSince1970: 1589053174)
+        let task = Task(title: "Foo", description: "Bar", date: date, location: location)
+        sut.task = task
+        
+        sut.beginAppearanceTransition(true, animated: true)
+        sut.endAppearanceTransition()
+    }
+    
+    //на DetailViewController есть правильный titleLabel конкретного Task
+    func testSettingTaskSetsTitlelabel() {
+        setupTaskAndAppearanceTransition()
+        XCTAssertEqual(sut.titleLabel.text, "Foo")
+    }
+    
+    //на DetailViewController есть правильный descriptionLabel конкретного Task
+    func testSettingTaskSetsDescriptionlabel() {
+        setupTaskAndAppearanceTransition()
+        XCTAssertEqual(sut.descriptionLabel.text, "Bar")
+    }
+    
+    //на DetailViewController есть правильный locationLabel конкретного Task
+    func testSettingTaskSetsLocationlabel() {
+        setupTaskAndAppearanceTransition()
+        XCTAssertEqual(sut.locationLabel.text, "Baz")
     }
 }

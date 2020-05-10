@@ -169,7 +169,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="adress" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBA-lu-o0Z">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="address" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WBA-lu-o0Z">
                                 <rect key="frame" x="112" y="180" width="97" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -196,7 +196,7 @@
                         <viewLayoutGuide key="safeArea" id="NRy-uN-I4A"/>
                     </view>
                     <connections>
-                        <outlet property="adressTextField" destination="WBA-lu-o0Z" id="Vhu-Wk-u74"/>
+                        <outlet property="addressTextField" destination="WBA-lu-o0Z" id="Cam-Fq-xHz"/>
                         <outlet property="cancelButton" destination="kJ2-ko-xHC" id="pHg-O6-Y8x"/>
                         <outlet property="dateTextField" destination="QHF-n5-bie" id="rD7-VB-brG"/>
                         <outlet property="descriptionTextField" destination="MIM-vg-Yx1" id="6Te-Xs-psJ"/>

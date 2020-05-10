@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import ToDoApp
 
 class NewTaskViewControllerTests: XCTestCase {
@@ -39,7 +40,7 @@ class NewTaskViewControllerTests: XCTestCase {
     }
     
     func testHasAdressTextField() {
-        XCTAssertTrue(sut.adressTextField.isDescendant(of: sut.view))
+        XCTAssertTrue(sut.addressTextField.isDescendant(of: sut.view))
     }
     
     func testHasDescriptionTextField() {
@@ -52,5 +53,28 @@ class NewTaskViewControllerTests: XCTestCase {
     
     func testHasSaveButton() {
         XCTAssertTrue(sut.saveButton.isDescendant(of: sut.view))
+    }
+    
+    //проверка при сохранении нового таска используется GeoCoder для возможности отображения на карте введённого адреса
+    func testSaveUsesGeocoderToConvertCoordinateFromAddres() {
+        let df = DateFormatter()
+        df.dateFormat = "dd.MM.yyyy"
+        let date = df.date(from: "09.05.2020")
+        
+        sut.titleTextField.text = "Foo"
+        sut.locationTextField.text = "Bar"
+        sut.dateTextField.text = "09.05.2020"
+        sut.addressTextField.text = "New York"
+        sut.descriptionTextField.text = "Baz"
+        sut.taskManager = TaskManager()
+        
+        sut.save()
+        
+        let task = sut.taskManager.task(at: 0)
+        let coordinate = CLLocationCoordinate2D(latitude: 40.7130125, longitude: -74.0071296)
+        let location = Location(name: "Bar", coordinate: coordinate)
+        let generatedTask = Task(title: "Foo", description: "Baz", date: date, location: location)
+        
+        XCTAssertEqual(task, generatedTask)
     }
 }

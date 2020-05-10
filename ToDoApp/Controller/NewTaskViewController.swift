@@ -23,13 +23,7 @@ class NewTaskViewController: UIViewController {
     @IBOutlet var cancelButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     
-    var dateFormater: DateFormatter {
-        let df = DateFormatter()
-        df.dateFormat = "dd.MM.yyyy"
-        return df
-    }
-    
-    func save() {
+    @IBAction func save() {
         let titleString = titleTextField.text
         let locationString = locationTextField.text
         let date = dateFormater.date(from: dateTextField.text!) //нужна проверка для опционала
@@ -44,4 +38,9 @@ class NewTaskViewController: UIViewController {
         }
     }
     
+    var dateFormater: DateFormatter {
+        let df = DateFormatter()
+        df.dateFormat = "dd.MM.yyyy"
+        return df
+    }
 }

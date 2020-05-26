@@ -76,6 +76,40 @@ class APIClientTests: XCTestCase {
             XCTAssertEqual(caughtToken, "token")
         }
     }
+    
+    //правильный формат JSON
+    func testLoginInvalidJSONReturnsError() {
+        mockURLSession = MockURLSession(data: Data(), urlResponse: nil, responseError: nil)
+        sut.urlSession = mockURLSession
+        //ожидание
+        let errorExpectation = expectation(description: "Error expectation")
+        
+        var caughtError: Error?
+        sut.login(withName: "login", password: "password") { _, error in
+            caughtError = error
+            errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { _ in
+            XCTAssertNotNil(caughtError)
+        }
+    }
+    
+    //вместо JSON или другого формата приходит nil, то выдаётся ошибка
+    func testLoginWhenDataIsNilReturnsError() {
+        mockURLSession = MockURLSession(data: nil, urlResponse: nil, responseError: nil)
+        sut.urlSession = mockURLSession
+        //ожидание
+        let errorExpectation = expectation(description: "Error expectation")
+        
+        var caughtError: Error?
+        sut.login(withName: "login", password: "password") { _, error in
+            caughtError = error
+            errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { _ in
+            XCTAssertNotNil(caughtError)
+        }
+    }
 }
 
 extension APIClientTests {

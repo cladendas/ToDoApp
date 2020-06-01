@@ -11,13 +11,15 @@ import XCTest
 
 class APIClientTests: XCTestCase {
     
-    var mockURLSession = MockURLSession(data: nil, urlResponse: nil, responseError: nil)
-    let sut = APIClient()
+    var sut: APIClient!
+    var mockURLSession: MockURLSession!
     
     override func setUp() {
+        mockURLSession = MockURLSession(data: nil, urlResponse: nil, responseError: nil)
+        sut = APIClient()
         sut.urlSession = mockURLSession
     }
-
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
@@ -120,11 +122,11 @@ class APIClientTests: XCTestCase {
         let errorExpectation = expectation(description: "Error expectation")
         
         var caughtError: Error?
-        sut.login(withName: "login", password: "password") { _ , error in
+        sut.login(withName: "login", password: "password") { _, error in
             caughtError = error
             errorExpectation.fulfill()
         }
-        waitForExpectations(timeout: 1) { _ in
+        waitForExpectations(timeout: 2) { _ in
             XCTAssertNotNil(caughtError)
         }
     }

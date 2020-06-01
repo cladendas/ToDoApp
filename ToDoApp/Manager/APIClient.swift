@@ -45,6 +45,10 @@ class APIClient {
         }
         
         urlSession.dataTask(with: url) { (data, response, error) in
+            guard error == nil else {
+                return completionHandler(nil, error)
+            }
+            
             do {
                 guard let data = data else {
                     completionHandler(nil, NetworkError.emptyData)

@@ -11,7 +11,7 @@ import Foundation
 extension String {
     var percentEncoded: String {
         //расшифровываются все символы, кроме указанных
-        let allowedCharacters = CharacterSet(charactersIn: "~±!@#$%^&*()[]\\{},./?<>-+=").inverted
+        let allowedCharacters = CharacterSet(charactersIn: "~!@#$%^&*()-+=[]\\}{,./?><").inverted
         guard let encodedString = self.addingPercentEncoding(withAllowedCharacters: allowedCharacters) else {
             fatalError()
         }

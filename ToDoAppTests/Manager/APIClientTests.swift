@@ -110,6 +110,24 @@ class APIClientTests: XCTestCase {
             XCTAssertNotNil(caughtError)
         }
     }
+    
+    //сервер возвращает ошибку
+    func testLoginWhenResponseErrorReturnsError() {
+        let jsonDataStub = "{\"token\": \"tokenString\"}".data(using: .utf8)
+        let error = NSError(domain: "Server error", code: 404, userInfo: nil)
+        mockURLSession = MockURLSession(data: jsonDataStub, urlResponse: nil, responseError: error)
+        sut.urlSession = mockURLSession
+        let errorExpectation = expectation(description: "Error expectation")
+        
+        var caughtError: Error?
+        sut.login(withName: "login", password: "password") { _ , error in
+            caughtError = error
+            errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 1) { _ in
+            XCTAssertNotNil(caughtError)
+        }
+    }
 }
 
 extension APIClientTests {

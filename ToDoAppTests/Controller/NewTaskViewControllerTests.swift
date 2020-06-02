@@ -118,6 +118,27 @@ class NewTaskViewControllerTests: XCTestCase {
         }
         waitForExpectations(timeout: 5, handler: nil)
     }
+    
+    //после нажатия save экран создания новой задачи должен уйти
+    func testSaveDismissesNewTaskViewController() {
+        let mockNewTaskViewController = MockNewTaskViewController()
+        mockNewTaskViewController.titleTextField = UITextField()
+        mockNewTaskViewController.titleTextField.text = "Foo"
+        mockNewTaskViewController.descriptionTextField = UITextField()
+        mockNewTaskViewController.descriptionTextField.text = "Bar"
+        mockNewTaskViewController.locationTextField = UITextField()
+        mockNewTaskViewController.locationTextField.text = "Baz"
+        mockNewTaskViewController.addressTextField = UITextField()
+        mockNewTaskViewController.addressTextField.text = "New York"
+        mockNewTaskViewController.dateTextField = UITextField()
+        mockNewTaskViewController.dateTextField.text = "09.05.2020"
+        
+        //when
+        mockNewTaskViewController.save()
+        
+        //then
+        XCTAssertTrue(mockNewTaskViewController.isDismidded)
+    }
 }
 
 extension NewTaskViewControllerTests {
@@ -138,6 +159,16 @@ extension NewTaskViewControllerTests {
         
         override var location: CLLocation? {
             return CLLocation(latitude: mockCoordinate.latitude, longitude: mockCoordinate.longitude)
+        }
+    }
+}
+
+extension NewTaskViewControllerTests {
+    class MockNewTaskViewController: NewTaskViewController {
+        var isDismidded = false
+        
+        override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+            isDismidded = true
         }
     }
 }

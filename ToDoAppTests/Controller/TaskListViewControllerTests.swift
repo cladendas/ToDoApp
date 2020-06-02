@@ -59,16 +59,11 @@ class TaskListViewControllerTests: XCTestCase {
         XCTAssertEqual(target as? TaskListViewController, sut)
     }
     
-    //при нажатии addButton появляется NewtaskViewController
-    func testAddNewtaskPresentsNewTaskViewController() {
-        //при срабатывании этого метода, не отображается какой-то дополнительный ViewController
-        XCTAssertNil(sut.presentedViewController)
-        
+    func presentingNewTaskViewController() -> NewTaskViewController {
         guard
             let newTaskButton = sut.navigationItem.rightBarButtonItem,
             let action = newTaskButton.action else {
-                XCTFail()
-                return
+                return NewTaskViewController()
         }
         
         //не получится создать контроллер с контроллера, который уже не на экране (в реальном приложение будет работать, но в тесте - нет)
@@ -77,10 +72,20 @@ class TaskListViewControllerTests: XCTestCase {
         
         //action выполняется в главном потоке, action выполняет newTaskButton, ждём пока окончитя - да
         sut.performSelector(onMainThread: action, with: newTaskButton, waitUntilDone: true)
-        XCTAssertNotNil(sut.presentedViewController)
-        XCTAssertTrue(sut.presentedViewController is NewTaskViewController)
         
         let newTaskViewController = sut.presentedViewController as! NewTaskViewController
+        return newTaskViewController
+    }
+    
+    //при нажатии addButton появляется NewtaskViewController
+    func testAddNewtaskPresentsNewTaskViewController() {
+        let newTaskViewController = presentingNewTaskViewController()
         XCTAssertNotNil(newTaskViewController.titleTextField)
+    }
+    
+    //у экземпляра DataProvider и у экземпляра NewTaskViewController в свойствах один и тот же экземпляр TaskManager
+    func testSharesSameTaskManagerNewTaskVC() {
+        let newTaskViewController = presentingNewTaskViewController()
+        XCTAssertTrue(newTaskViewController.taskManager === sut.dataProvider.taskManager)
     }
 }
